@@ -32,8 +32,8 @@ app.post('/create-checkout-session', async (req, res) => {
       },
     ],
     mode: 'payment',
-     success_url: 'http://localhost:4242/success.html',
-     cancel_url: 'http://localhost:4242/cancel.html',
+     success_url: 'https://heuristic-archimedes-2e4bb9.netlify.app/success.html',
+     cancel_url: 'https://heuristic-archimedes-2e4bb9.netlify.app/cancel.html',
   });
 //Id här får vi från vår backend 
   res.json({ id: session.id });

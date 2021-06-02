@@ -7,15 +7,11 @@
 //Backend to create diffrent API endpoints. This i the provider 
 
 const express = require('express'); 
-
-require("dotenv").config()
-const bodyParser = require('body-parser')
-
 const app = express();
 const cors = require("cors"); 
 
 //Här ligger vår secret key 
-const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
+const stripe = require('stripe')('sk_test_51Ix6LSGaMeFrhWKCJXLvA6lmC7PAT51kEWD1UVzwtIopHIsfFnVIjZy989HYCmLKg60QS2Ynr8Yxlmj6QMPkJECG00ucXz7OCN')
 
 app.use(cors())
 
@@ -36,13 +32,13 @@ app.post('/create-checkout-session', async (req, res) => {
       },
     ],
     mode: 'payment',
-    success_url: 'https://heuristic-archimedes-2e4bb9.netlify.app/success.html',
-    cancel_url: 'https://heuristic-archimedes-2e4bb9.netlify.app/4242/cancel.html',
+     success_url: 'https://heuristic-archimedes-2e4bb9.netlify.app/success.html',
+     cancel_url: 'https://heuristic-archimedes-2e4bb9.netlify.app/cancel.html',
   });
 //Id här får vi från vår backend 
   res.json({ id: session.id });
 });
 
-app.listen(4242, () => console.log(`Listening on port ${4242}!`));
+app.listen(4242);
 //localhost:4242
 //ska se om detta funkar 

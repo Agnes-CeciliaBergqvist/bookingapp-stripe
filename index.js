@@ -39,6 +39,6 @@ app.post('/create-checkout-session', async (req, res) => {
   res.json({ id: session.id });
 });
 
-app.listen(4242);
+app.listen(80);
 //localhost:4242
 //ska se om detta funkar 

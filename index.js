@@ -38,7 +38,7 @@ app.post('/create-checkout-session', async (req, res) => {
       },
     ],
     mode: 'payment',
-     success_url: 'https://heuristic-archimedes-2e4bb9.netlify.app/success.html',
+     success_url: 'https://heuristic-archimedes-2e4bb9.netlify.app/success',
      cancel_url: 'https://heuristic-archimedes-2e4bb9.netlify.app/cancel.html',
   });
 //Id här får vi från vår backend 

@@ -5,8 +5,8 @@
 
 
 //Backend to create diffrent API endpoints. This i the provider 
-
 const express = require('express'); 
+const bodyParser = require('body-parser')
 const app = express();
 const cors = require("cors"); 
 
@@ -15,18 +15,24 @@ const stripe = require('stripe')('sk_test_51Ix6LSGaMeFrhWKCJXLvA6lmC7PAT51kEWD1U
 
 app.use(cors())
 
+//This is to be able do read the body of name and price. 
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+
 app.post('/create-checkout-session', async (req, res) => {
+
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     line_items: [
-        //denna datan nedan ska bli dynamisk 
+        
       {
         price_data: {
-          currency: 'usd',
+          currency: 'SEK',
           product_data: {
-            name: 'T-shirt',
+            name: req.body.name,
           },
-          unit_amount: 2000,
+          unit_amount: req.body.price,
         },
         quantity: 1,
       },
@@ -41,5 +47,5 @@ app.post('/create-checkout-session', async (req, res) => {
 
 const port = process.env.PORT || 3000
 app.listen(port);
-//localhost:4242
+//Vi har port 3000 
 //ska se om detta funkar 
